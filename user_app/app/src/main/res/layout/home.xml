@@ -8,7 +8,7 @@
     tools:context="home">
 
 
-    <TextView
+   <!-- <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,22 +21,111 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="24sp">
 
-    </TextView>
+    </TextView>-->
 
+    <View
+        android:id="@+id/rectangle_1"
+        android:layout_width="match_parent"
+        android:layout_height="399.32dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="-1dp"
+        android:layout_marginTop="-100dp"
+        android:background="@drawable/ic_home_rectangle">
+
+    </View>
+
+    <TextView
+        android:id="@+id/home"
+        android:layout_width="242dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="22dp"
+        android:text="Home"
+        android:textAllCaps="true"
+        android:textColor="#000000"
+        android:textSize="37sp"
+        android:gravity="center_horizontal|top"
+        />
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="20dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
         android:contentDescription="@string/profile_icon"
         android:maxWidth="20dp"
         android:onClick="showPopup"
-        android:layout_marginEnd="20dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/profile" />
+        app:srcCompat="@drawable/ic_profile_icon" />
 
+    <TextView
+        android:id="@+id/please_sele"
+        android:layout_width="318dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="280dp"
+        android:textSize="25sp"
+        android:text="Please Select Service"
+        android:textAllCaps="true"
+        android:textColor="#000000"
+        android:gravity="center_horizontal|top"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/medical_button"
+        android:src="@drawable/ic_medical_button"
+        android:onClick="medicalClick"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="330dp"
+        android:elevation="4dp"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/local_vendor_button"
+        android:src="@drawable/ic_local_vendor"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="400dp"
+        android:elevation="4dp"
+        android:onClick="localVendor"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/supermarkets_button"
+        android:src="@drawable/ic_supermarkets"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="470dp"
+        android:elevation="4dp"
+        android:onClick="supermarketClick"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pharmacy_button"
+        android:src="@drawable/ic_pharmacy"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="540dp"
+        android:elevation="4dp"
+        android:onClick="pharmacyClick"/>
 
 </RelativeLayout>

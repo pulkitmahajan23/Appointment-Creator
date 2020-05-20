@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +27,8 @@ import com.ibm.cloud.appid.android.api.userprofile.UserProfileException;
 import java.net.URL;
 import java.util.List;
 
-public class home extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public class localVendor extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
+
     private AppID appID;
 
     private AppIDAuthorizationManager appIDAuthorizationManager;
@@ -43,7 +43,8 @@ public class home extends AppCompatActivity implements PopupMenu.OnMenuItemClick
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
+        setContentView(R.layout.activity_local_vendor);
+
         progressManager = new ProgressManager(this);
 
         getSupportActionBar().hide();
@@ -131,9 +132,9 @@ public class home extends AppCompatActivity implements PopupMenu.OnMenuItemClick
                     public void onAuthorizationSuccess(AccessToken accessToken, IdentityToken identityToken, RefreshToken refreshToken) {
                         progressManager.hideProgress();
                         if (accessToken != null && identityToken != null) {
-                            Intent intent = new Intent(home.this, home.class);
+                            Intent intent = new Intent(localVendor.this, localVendor.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            home.this.startActivity(intent);
+                            localVendor.this.startActivity(intent);
                         }
                     }
 
@@ -191,25 +192,9 @@ public class home extends AppCompatActivity implements PopupMenu.OnMenuItemClick
         popup.show();
     }
 
-    public void localVendor(View view)
+    public void back(View view)
     {
-        Intent intent=new Intent(home.this,localVendor.class);
+        Intent intent=new Intent(localVendor.this,home.class);
         startActivity(intent);
     }
-    public void medicalClick(View view)
-    {
-        Intent intent=new Intent(home.this,medicalActivity.class);
-        startActivity(intent);
-    }
-    public void supermarketClick(View view)
-    {
-        Intent intent=new Intent(home.this,supermarketActivity.class);
-        startActivity(intent);
-    }
-    public void pharmacyClick(View view)
-    {
-        Intent intent=new Intent(home.this,pharmacyActivity.class);
-        startActivity(intent);
-    }
-
 }
