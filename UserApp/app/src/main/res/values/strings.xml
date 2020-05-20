@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">appointment</string>
+    <string name="title_home">Home</string>
+    <string name="title_appointment">Appointment</string>
+    <string name="title_chat">Chat</string>
+    <string name="entered_name">Enter your name</string>
+</resources>
