@@ -44,18 +44,12 @@ public class pharmacyActivity extends AppCompatActivity implements PopupMenu.OnM
     private boolean isCloudDirectory = false, isAnonymous = false;
 
     static Spinner pharma,slot;
-    static String vendor, set_slot;
-    static boolean med,local_vendor,pharmacy,superm;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pharmacy);
 
-        med=false;
-        local_vendor=false;
-        pharmacy=false;
-        superm=false;
 
         progressManager = new ProgressManager(this);
 

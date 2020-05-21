@@ -43,16 +43,11 @@ public class medicalActivity extends AppCompatActivity implements PopupMenu.OnMe
     private boolean isCloudDirectory = false, isAnonymous = false;
 
     static Spinner clinic,slot;
-    static String vendor, set_slot;
-    static boolean med,local_vendor,pharmacy,superm;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medical);
-        med=false;
-        local_vendor=false;
-        pharmacy=false;
-        superm=false;
         progressManager = new ProgressManager(this);
 
         getSupportActionBar().hide();
@@ -222,10 +217,6 @@ public class medicalActivity extends AppCompatActivity implements PopupMenu.OnMe
 
     public void Confirm(View view)
     {
-        local_vendor=false;
-        pharmacy=false;
-        superm=false;
-        med=true;
         Intent intent=new Intent(medicalActivity.this,confirmPage.class);
         intent.putExtra("Type","Medical");
         intent.putExtra("Vendor",clinic.getSelectedItem().toString());
