@@ -225,35 +225,14 @@ public class supermarketActivity extends AppCompatActivity implements PopupMenu.
     }
     public void Confirm(View view)
     {
-        local_vendor=false;
-        pharmacy=false;
-        med=false;
-        superm=true;
+
         Intent intent=new Intent(supermarketActivity.this,confirmPage.class);
+        intent.putExtra("Type","Supermarket");
+        intent.putExtra("Vendor",supermarket.getSelectedItem().toString());
+        intent.putExtra("Slot",slot.getSelectedItem().toString());
         startActivity(intent);
 
     }
-    public static String getType()
-    {
-        String type= "Supermarket";
-        return type;
-    }
 
-    public static String getVendor()
-    {
-        vendor=supermarket.getSelectedItem().toString();
-        Log.d(TAG, "Confirm: "+vendor);
-        return vendor;
-    }
-    public static String getSlot()
-    {
-        set_slot=slot.getSelectedItem().toString();
-        return set_slot;
-    }
-    public static boolean confirmation()
-    {
-        superm=true;
-        return superm;
-    }
 
 }

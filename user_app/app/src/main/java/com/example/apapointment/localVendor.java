@@ -225,36 +225,12 @@ public class localVendor extends AppCompatActivity implements PopupMenu.OnMenuIt
     }
     public void Confirm(View view)
     {
-        med=false;
-        pharmacy=false;
-        superm=false;
-        local_vendor=true;
         Intent intent=new Intent(localVendor.this,confirmPage.class);
+        intent.putExtra("Type","Local Vendor");
+        intent.putExtra("Vendor",local.getSelectedItem().toString());
+        intent.putExtra("Slot",slot.getSelectedItem().toString());
         startActivity(intent);
 
-    }
-
-    public static String getType()
-    {
-        String type= "Local Vendor";
-        return type;
-    }
-
-    public static String getVendor()
-    {
-        vendor=local.getSelectedItem().toString();
-        Log.d(TAG, "Confirm: "+vendor);
-        return vendor;
-    }
-    public static String getSlot()
-    {
-        set_slot=slot.getSelectedItem().toString();
-        return set_slot;
-    }
-    public static boolean confirmation()
-    {
-        local_vendor=true;
-        return local_vendor;
     }
 
 }

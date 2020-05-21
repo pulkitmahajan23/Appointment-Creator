@@ -227,30 +227,9 @@ public class medicalActivity extends AppCompatActivity implements PopupMenu.OnMe
         superm=false;
         med=true;
         Intent intent=new Intent(medicalActivity.this,confirmPage.class);
+        intent.putExtra("Type","Medical");
+        intent.putExtra("Vendor",clinic.getSelectedItem().toString());
+        intent.putExtra("Slot",slot.getSelectedItem().toString());
         startActivity(intent);
     }
-    public static String getType()
-    {
-        String type= "Medical";
-        return type;
     }
-
-    public static String getVendor()
-    {
-        vendor=clinic.getSelectedItem().toString();
-        Log.d(TAG, "Confirm: "+vendor);
-        return vendor;
-    }
-    public static String getSlot()
-    {
-        set_slot=slot.getSelectedItem().toString();
-        return set_slot;
-    }
-    public static boolean confirmation()
-    {
-        med=true;
-        return med;
-    }
-
-
-}

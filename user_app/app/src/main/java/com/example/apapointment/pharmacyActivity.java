@@ -219,32 +219,12 @@ public class pharmacyActivity extends AppCompatActivity implements PopupMenu.OnM
     }
     public void Confirm(View view)
     {
-        pharmacy=true;
         Intent intent=new Intent(pharmacyActivity.this,confirmPage.class);
+        intent.putExtra("Type","Pharmacy");
+        intent.putExtra("Vendor",pharma.getSelectedItem().toString());
+        intent.putExtra("Slot",slot.getSelectedItem().toString());
         startActivity(intent);
 
-    }
-    public static String getType()
-    {
-        String type= "Pharmacy";
-        return type;
-    }
-
-    public static String getVendor()
-    {
-        vendor=pharma.getSelectedItem().toString();
-        Log.d(TAG, "Confirm: "+vendor);
-        return vendor;
-    }
-    public static String getSlot()
-    {
-        set_slot=slot.getSelectedItem().toString();
-        return set_slot;
-    }
-    public static boolean confirmation()
-    {
-        pharmacy=true;
-        return pharmacy;
     }
 
 }
