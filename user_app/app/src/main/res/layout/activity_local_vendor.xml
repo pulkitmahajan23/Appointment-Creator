@@ -60,4 +60,12 @@
         android:layout_marginTop="557dp"
         android:background="@drawable/ic_arrow_back"
         android:onClick="back"/>
+    <ImageButton
+        android:layout_width="169dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="550dp"
+        android:layout_marginLeft="95dp"
+        app:srcCompat="@drawable/ic_confirm_button"
+        android:onClick="Confirm"
+        />
 </RelativeLayout>

@@ -63,14 +63,9 @@ public class pharmacyActivity extends AppCompatActivity implements PopupMenu.OnM
                 && authenticationMethods.get(0).equals("cloud_directory")) {
             isCloudDirectory = true;
         }
-
-
         String profilePhotoUrl = idt.getPicture();
         setProfilePhoto(profilePhotoUrl);
-
-
         authState = (NoticeHelper.AuthState)getIntent().getSerializableExtra("auth-state");
-
     }
 
     private void setProfilePhoto(final String photoUrl) {
@@ -172,7 +167,6 @@ public class pharmacyActivity extends AppCompatActivity implements PopupMenu.OnM
 
     private void launchLoginWidget() {
         LoginWidget loginWidget = appID.getLoginWidget();
-
         AuthorizationListener loginAuthorization = new AppIdSampleAuthorizationListener(this,appIDAuthorizationManager,false);
         loginWidget.launch(this,loginAuthorization);
     }
@@ -195,5 +189,11 @@ public class pharmacyActivity extends AppCompatActivity implements PopupMenu.OnM
     {
         Intent intent=new Intent(pharmacyActivity.this,home.class);
         startActivity(intent);
+    }
+    public void Confirm(View view)
+    {
+        Intent intent=new Intent(pharmacyActivity.this,confirmPage.class);
+        startActivity(intent);
+
     }
 }

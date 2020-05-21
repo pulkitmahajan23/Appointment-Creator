@@ -196,4 +196,11 @@ public class medicalActivity extends AppCompatActivity implements PopupMenu.OnMe
         Intent intent=new Intent(medicalActivity.this,home.class);
         startActivity(intent);
     }
+
+    public void Confirm(View view)
+    {
+        Intent intent=new Intent(medicalActivity.this,confirmPage.class);
+        startActivity(intent);
+
+    }
 }

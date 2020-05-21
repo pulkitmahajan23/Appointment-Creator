@@ -197,4 +197,10 @@ public class localVendor extends AppCompatActivity implements PopupMenu.OnMenuIt
         Intent intent=new Intent(localVendor.this,home.class);
         startActivity(intent);
     }
+    public void Confirm(View view)
+    {
+        Intent intent=new Intent(localVendor.this,confirmPage.class);
+        startActivity(intent);
+
+    }
 }

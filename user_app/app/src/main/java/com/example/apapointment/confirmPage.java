@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +28,7 @@ import com.ibm.cloud.appid.android.api.userprofile.UserProfileException;
 import java.net.URL;
 import java.util.List;
 
-public class supermarketActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public class confirmPage extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     private AppID appID;
 
     private AppIDAuthorizationManager appIDAuthorizationManager;
@@ -42,7 +43,7 @@ public class supermarketActivity extends AppCompatActivity implements PopupMenu.
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_supermarket);
+        setContentView(R.layout.activity_confirm_page);
 
         progressManager = new ProgressManager(this);
 
@@ -63,14 +64,14 @@ public class supermarketActivity extends AppCompatActivity implements PopupMenu.
                 && authenticationMethods.get(0).equals("cloud_directory")) {
             isCloudDirectory = true;
         }
-
-
         String profilePhotoUrl = idt.getPicture();
         setProfilePhoto(profilePhotoUrl);
 
-
+        String userName = idt.getEmail() != null ? idt.getEmail().split("@")[0] : "Guest";
+        if(idt.getName() != null)
+            userName = idt.getName();
+        ((TextView) findViewById(R.id.details_name_set)).setText(userName);
         authState = (NoticeHelper.AuthState)getIntent().getSerializableExtra("auth-state");
-
     }
 
     private void setProfilePhoto(final String photoUrl) {
@@ -131,9 +132,9 @@ public class supermarketActivity extends AppCompatActivity implements PopupMenu.
                     public void onAuthorizationSuccess(AccessToken accessToken, IdentityToken identityToken, RefreshToken refreshToken) {
                         progressManager.hideProgress();
                         if (accessToken != null && identityToken != null) {
-                            Intent intent = new Intent(supermarketActivity.this, supermarketActivity.class);
+                            Intent intent = new Intent(confirmPage.this, confirmPage.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            supermarketActivity.this.startActivity(intent);
+                            confirmPage.this.startActivity(intent);
                         }
                     }
 
@@ -172,7 +173,6 @@ public class supermarketActivity extends AppCompatActivity implements PopupMenu.
 
     private void launchLoginWidget() {
         LoginWidget loginWidget = appID.getLoginWidget();
-
         AuthorizationListener loginAuthorization = new AppIdSampleAuthorizationListener(this,appIDAuthorizationManager,false);
         loginWidget.launch(this,loginAuthorization);
     }
@@ -189,17 +189,5 @@ public class supermarketActivity extends AppCompatActivity implements PopupMenu.
             popup.getMenu().findItem(R.id.logOut).setTitle(R.string.login);
         }
         popup.show();
-    }
-
-    public void back(View view)
-    {
-        Intent intent=new Intent(supermarketActivity.this,home.class);
-        startActivity(intent);
-    }
-    public void Confirm(View view)
-    {
-        Intent intent=new Intent(supermarketActivity.this,confirmPage.class);
-        startActivity(intent);
-
     }
 }
