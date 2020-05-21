@@ -50,6 +50,7 @@
         android:layout_marginLeft="32dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:onClick="loginClick"
         />
 
 </RelativeLayout>

@@ -7,22 +7,6 @@
     android:layout_height="match_parent"
     tools:context="home">
 
-
-   <!-- <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:text="Name"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="24sp">
-
-    </TextView>-->
-
     <View
         android:id="@+id/rectangle_1"
         android:layout_width="match_parent"
@@ -70,62 +54,59 @@
         android:layout_width="318dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="20dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="310dp"
         android:textSize="25sp"
         android:text="Please Select Service"
         android:textAllCaps="true"
         android:textColor="#000000"
         android:gravity="center_horizontal|top"
         />
+     <View
+     android:id="@+id/group_3"
+     android:layout_width="279dp"
+     android:layout_height="47dp"
+     android:layout_alignParentLeft="true"
+     android:layout_marginLeft="37dp"
+     android:layout_alignParentTop="true"
+     android:layout_marginTop="360dp"
+     android:onClick="medicalClick"
+     android:background="@drawable/ic_group_3_1"
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/medical_button"
-        android:src="@drawable/ic_medical_button"
-        android:onClick="medicalClick"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="55dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="330dp"
-        android:elevation="4dp"/>
+     />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <View
+        android:layout_width="279dp"
+        android:layout_height="47dp"
         android:id="@+id/local_vendor_button"
-        android:src="@drawable/ic_local_vendor"
+        android:background="@drawable/ic_local_vendor"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="55dp"
+        android:layout_marginLeft="37dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="400dp"
-        android:elevation="4dp"
+        android:layout_marginTop="430dp"
         android:onClick="localVendor"/>
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <View
+        android:layout_width="279dp"
+        android:layout_height="47dp"
         android:id="@+id/supermarkets_button"
-        android:src="@drawable/ic_supermarkets"
+        android:background="@drawable/ic_supermarket"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="55dp"
+        android:layout_marginLeft="37dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="470dp"
-        android:elevation="4dp"
+        android:layout_marginTop="500dp"
         android:onClick="supermarketClick"/>
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <View
+        android:layout_width="279dp"
+        android:layout_height="47dp"
         android:id="@+id/pharmacy_button"
-        android:src="@drawable/ic_pharmacy"
+        android:background="@drawable/ic_pharmacy"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="55dp"
+        android:layout_marginLeft="37dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="540dp"
-        android:elevation="4dp"
+        android:layout_marginTop="570dp"
         android:onClick="pharmacyClick"/>
 
 </RelativeLayout>
