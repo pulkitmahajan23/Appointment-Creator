@@ -1,5 +1,6 @@
 package com.example.apapointment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -71,6 +73,33 @@ public class confirmPage extends AppCompatActivity implements PopupMenu.OnMenuIt
         if(idt.getName() != null)
             userName = idt.getName();
         ((TextView) findViewById(R.id.details_name_set)).setText(userName);
+        if(medicalActivity.med) {
+            ((TextView) findViewById(R.id.details_type_set)).setText(medicalActivity.getType());
+            ((TextView) findViewById(R.id.details_vendor_set)).setText(medicalActivity.getVendor());
+            ((TextView) findViewById(R.id.details_slot_set)).setText(medicalActivity.getSlot());
+            Toast.makeText(this,"Medical",Toast.LENGTH_SHORT).show();
+        }
+        else if(localVendor.local_vendor)
+        {
+            ((TextView) findViewById(R.id.details_type_set)).setText(localVendor.getType());
+            ((TextView) findViewById(R.id.details_vendor_set)).setText(localVendor.getVendor());
+            ((TextView) findViewById(R.id.details_slot_set)).setText(localVendor.getSlot());
+            Toast.makeText(this,"Local Vendor",Toast.LENGTH_SHORT).show();
+        }
+        else if(pharmacyActivity.pharmacy)
+        {
+            ((TextView) findViewById(R.id.details_type_set)).setText(pharmacyActivity.getType());
+            ((TextView) findViewById(R.id.details_vendor_set)).setText(pharmacyActivity.getVendor());
+            ((TextView) findViewById(R.id.details_slot_set)).setText(pharmacyActivity.getSlot());
+            Toast.makeText(this,"Pharmacy",Toast.LENGTH_SHORT).show();
+        }
+        else if(supermarketActivity.superm)
+        {
+            ((TextView) findViewById(R.id.details_type_set)).setText(supermarketActivity.getType());
+            ((TextView) findViewById(R.id.details_vendor_set)).setText(supermarketActivity.getVendor());
+            ((TextView) findViewById(R.id.details_slot_set)).setText(supermarketActivity.getSlot());
+            Toast.makeText(this,"Supermarket",Toast.LENGTH_SHORT).show();
+        }
         authState = (NoticeHelper.AuthState)getIntent().getSerializableExtra("auth-state");
     }
 

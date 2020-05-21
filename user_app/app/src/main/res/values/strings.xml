@@ -22,4 +22,17 @@ Since he had logged in in the past, the app switches over to his existing identi
     <string name="change_password">Change Password</string>
     <string name="log_out">Sign out</string>
     <string name="login">Sign in</string>
+    <string name="select_clinic">Select Clinic</string>
+    <string-array name="clinic_list">
+        <item>MS. XAIHD</item>
+        <item>Mr. KHERA </item>
+        <item>Mr. DUBEY</item>
+        <item>Mr. DEY</item>
+    </string-array>
+    <string-array name="slot_list">
+        <item>10 am - 11 am</item>
+        <item>11 am - 12 pm </item>
+        <item>12 pm - 1 pm</item>
+        <item>2 pm - 3 pm</item>
+    </string-array>
 </resources>

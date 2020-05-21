@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +29,8 @@ import com.ibm.cloud.appid.android.api.userprofile.UserProfileException;
 import java.net.URL;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 public class pharmacyActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     private AppID appID;
 
@@ -39,10 +43,19 @@ public class pharmacyActivity extends AppCompatActivity implements PopupMenu.OnM
     private ProgressManager progressManager;
     private boolean isCloudDirectory = false, isAnonymous = false;
 
+    static Spinner pharma,slot;
+    static String vendor, set_slot;
+    static boolean med,local_vendor,pharmacy,superm;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pharmacy);
+
+        med=false;
+        local_vendor=false;
+        pharmacy=false;
+        superm=false;
 
         progressManager = new ProgressManager(this);
 
@@ -66,6 +79,20 @@ public class pharmacyActivity extends AppCompatActivity implements PopupMenu.OnM
         String profilePhotoUrl = idt.getPicture();
         setProfilePhoto(profilePhotoUrl);
         authState = (NoticeHelper.AuthState)getIntent().getSerializableExtra("auth-state");
+        pharma = (Spinner)findViewById(R.id.pharmacy_select);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.clinic_list, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pharma.setAdapter(adapter);
+        SpinnerActivity spin=new SpinnerActivity();
+        pharma.setOnItemSelectedListener(spin);
+
+        slot=(Spinner)findViewById(R.id.slot_select);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
+                R.array.slot_list, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        slot.setAdapter(adapter1);
+        slot.setOnItemSelectedListener(spin);
     }
 
     private void setProfilePhoto(final String photoUrl) {
@@ -192,8 +219,32 @@ public class pharmacyActivity extends AppCompatActivity implements PopupMenu.OnM
     }
     public void Confirm(View view)
     {
+        pharmacy=true;
         Intent intent=new Intent(pharmacyActivity.this,confirmPage.class);
         startActivity(intent);
 
     }
+    public static String getType()
+    {
+        String type= "Pharmacy";
+        return type;
+    }
+
+    public static String getVendor()
+    {
+        vendor=pharma.getSelectedItem().toString();
+        Log.d(TAG, "Confirm: "+vendor);
+        return vendor;
+    }
+    public static String getSlot()
+    {
+        set_slot=slot.getSelectedItem().toString();
+        return set_slot;
+    }
+    public static boolean confirmation()
+    {
+        pharmacy=true;
+        return pharmacy;
+    }
+
 }

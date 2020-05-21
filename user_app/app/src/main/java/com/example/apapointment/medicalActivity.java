@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +29,7 @@ import com.ibm.cloud.appid.android.api.userprofile.UserProfileException;
 
 import java.net.URL;
 import java.util.List;
-
+import static android.content.ContentValues.TAG;
 public class medicalActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     private AppID appID;
 
@@ -39,11 +42,17 @@ public class medicalActivity extends AppCompatActivity implements PopupMenu.OnMe
     private ProgressManager progressManager;
     private boolean isCloudDirectory = false, isAnonymous = false;
 
+    static Spinner clinic,slot;
+    static String vendor, set_slot;
+    static boolean med,local_vendor,pharmacy,superm;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medical);
-
+        med=false;
+        local_vendor=false;
+        pharmacy=false;
+        superm=false;
         progressManager = new ProgressManager(this);
 
         getSupportActionBar().hide();
@@ -71,6 +80,20 @@ public class medicalActivity extends AppCompatActivity implements PopupMenu.OnMe
 
         authState = (NoticeHelper.AuthState)getIntent().getSerializableExtra("auth-state");
 
+        clinic = (Spinner)findViewById(R.id.clinic_select);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.clinic_list, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        clinic.setAdapter(adapter);
+        SpinnerActivity spin=new SpinnerActivity();
+        clinic.setOnItemSelectedListener(spin);
+
+        slot=(Spinner)findViewById(R.id.slot_select);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
+                R.array.slot_list, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        slot.setAdapter(adapter1);
+        slot.setOnItemSelectedListener(spin);
     }
 
     private void setProfilePhoto(final String photoUrl) {
@@ -199,8 +222,35 @@ public class medicalActivity extends AppCompatActivity implements PopupMenu.OnMe
 
     public void Confirm(View view)
     {
+        local_vendor=false;
+        pharmacy=false;
+        superm=false;
+        med=true;
         Intent intent=new Intent(medicalActivity.this,confirmPage.class);
         startActivity(intent);
-
     }
+    public static String getType()
+    {
+        String type= "Medical";
+        return type;
+    }
+
+    public static String getVendor()
+    {
+        vendor=clinic.getSelectedItem().toString();
+        Log.d(TAG, "Confirm: "+vendor);
+        return vendor;
+    }
+    public static String getSlot()
+    {
+        set_slot=slot.getSelectedItem().toString();
+        return set_slot;
+    }
+    public static boolean confirmation()
+    {
+        med=true;
+        return med;
+    }
+
+
 }

@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +29,8 @@ import com.ibm.cloud.appid.android.api.userprofile.UserProfileException;
 import java.net.URL;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 public class supermarketActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     private AppID appID;
 
@@ -39,10 +43,19 @@ public class supermarketActivity extends AppCompatActivity implements PopupMenu.
     private ProgressManager progressManager;
     private boolean isCloudDirectory = false, isAnonymous = false;
 
+    static Spinner supermarket,slot;
+    static String vendor, set_slot;
+    static boolean med,local_vendor,pharmacy,superm;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supermarket);
+
+        med=false;
+        local_vendor=false;
+        pharmacy=false;
+        superm=false;
 
         progressManager = new ProgressManager(this);
 
@@ -68,6 +81,20 @@ public class supermarketActivity extends AppCompatActivity implements PopupMenu.
         String profilePhotoUrl = idt.getPicture();
         setProfilePhoto(profilePhotoUrl);
 
+        supermarket = (Spinner)findViewById(R.id.supermarket_select);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.clinic_list, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        supermarket.setAdapter(adapter);
+        SpinnerActivity spin=new SpinnerActivity();
+        supermarket.setOnItemSelectedListener(spin);
+
+        slot=(Spinner)findViewById(R.id.slot_select);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
+                R.array.slot_list, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        slot.setAdapter(adapter1);
+        slot.setOnItemSelectedListener(spin);
 
         authState = (NoticeHelper.AuthState)getIntent().getSerializableExtra("auth-state");
 
@@ -198,8 +225,35 @@ public class supermarketActivity extends AppCompatActivity implements PopupMenu.
     }
     public void Confirm(View view)
     {
+        local_vendor=false;
+        pharmacy=false;
+        med=false;
+        superm=true;
         Intent intent=new Intent(supermarketActivity.this,confirmPage.class);
         startActivity(intent);
 
     }
+    public static String getType()
+    {
+        String type= "Supermarket";
+        return type;
+    }
+
+    public static String getVendor()
+    {
+        vendor=supermarket.getSelectedItem().toString();
+        Log.d(TAG, "Confirm: "+vendor);
+        return vendor;
+    }
+    public static String getSlot()
+    {
+        set_slot=slot.getSelectedItem().toString();
+        return set_slot;
+    }
+    public static boolean confirmation()
+    {
+        superm=true;
+        return superm;
+    }
+
 }
